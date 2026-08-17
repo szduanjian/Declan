@@ -131,7 +131,7 @@ function buildMenu() {
         <strong>${car.name}</strong>
         <span class="tag">${car.tag}</span>
         <p>${car.blurb}</p>
-        <small>TOP ${Math.round(car.maxSpeed * 4.15)} · GRIP ${car.grip.toFixed(0)} · ACCEL ${car.accel}</small>
+        <small>TOP ${Math.round(car.maxSpeed * 5.05)} · GRIP ${car.grip.toFixed(0)} · ACCEL ${car.accel}</small>
       </div>`;
     card.addEventListener("click", () => {
       selected = i;

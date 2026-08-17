@@ -59,7 +59,7 @@ export function updateCar(state, input, spec, dt, surface) {
   force -= state.speed * Math.abs(state.speed) * spec.drag * 0.7;
 
   if (!surface.onTrack) {
-    const dirt = surface.onShoulder ? 2.4 : 5.2;
+    const dirt = surface.onShoulder ? 1.15 : 2.6;
     force -= state.speed * dirt;
   }
 
@@ -115,7 +115,7 @@ export function updateCar(state, input, spec, dt, surface) {
 }
 
 export function speedKmh(speed) {
-  return Math.max(0, speed) * 4.15;
+  return Math.max(0, speed) * 5.05;
 }
 
 function clamp(v, a, b) {

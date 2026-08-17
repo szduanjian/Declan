@@ -1,8 +1,8 @@
 /** Closed neon street circuit: geometry queries and lap logic. No renderer deps. */
 
-export const HALF_WIDTH = 8.2;
-export const SHOULDER = 3.4;
-export const BARRIER = 12.4;
+export const HALF_WIDTH = 10.4;
+export const SHOULDER = 4.2;
+export const BARRIER = 15.2;
 export const TOTAL_LAPS = 3;
 export const CHECKPOINTS = 8;
 
