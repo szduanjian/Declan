@@ -96,11 +96,14 @@ html, body {
   z-index: 4;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  background: linear-gradient(180deg, rgba(5, 1, 10, 0.28), rgba(5, 1, 10, 0.72));
+  padding: 28px 16px 18px;
+  background: linear-gradient(180deg, rgba(5, 1, 10, 0.55) 0%, rgba(5, 1, 10, 0.12) 38%, rgba(5, 1, 10, 0.2) 62%, rgba(5, 1, 10, 0.7) 100%);
   pointer-events: auto;
 }
+
+#finish { justify-content: center; background: rgba(5, 1, 10, 0.62); }
 
 .title {
   font-family: Orbitron, sans-serif;
@@ -123,7 +126,7 @@ html, body {
   display: grid;
   grid-template-columns: repeat(4, minmax(160px, 210px));
   gap: 12px;
-  margin: 36px 20px 22px;
+  margin: auto 20px 16px;
   max-width: 960px;
 }
 

@@ -55,8 +55,8 @@ export function updateCar(state, input, spec, dt, surface) {
     else force -= spec.reverse * input.brake;
   }
 
-  force -= state.speed * spec.roll;
-  force -= state.speed * Math.abs(state.speed) * spec.drag;
+  force -= state.speed * spec.roll * 0.72;
+  force -= state.speed * Math.abs(state.speed) * spec.drag * 0.7;
 
   if (!surface.onTrack) {
     const dirt = surface.onShoulder ? 2.4 : 5.2;

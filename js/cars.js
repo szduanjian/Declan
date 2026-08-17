@@ -9,9 +9,9 @@ export const CARS = [
     color: 0xff2bd6,
     accent: 0x3de7ff,
     cabin: 0x14061c,
-    maxSpeed: 56,
-    accel: 27,
-    brake: 41,
+    maxSpeed: 64,
+    accel: 44,
+    brake: 46,
     reverse: 15,
     reverseMax: 14,
     grip: 13.2,
@@ -28,9 +28,9 @@ export const CARS = [
     color: 0xff4b1f,
     accent: 0xffd166,
     cabin: 0x1a0806,
-    maxSpeed: 66,
-    accel: 23,
-    brake: 36,
+    maxSpeed: 76,
+    accel: 40,
+    brake: 40,
     reverse: 13,
     reverseMax: 12,
     grip: 9.4,
@@ -47,9 +47,9 @@ export const CARS = [
     color: 0x39ff88,
     accent: 0xb8ff3d,
     cabin: 0x06140c,
-    maxSpeed: 48,
-    accel: 22,
-    brake: 48,
+    maxSpeed: 56,
+    accel: 36,
+    brake: 54,
     reverse: 16,
     reverseMax: 13,
     grip: 16.8,
@@ -66,9 +66,9 @@ export const CARS = [
     color: 0xc8b6ff,
     accent: 0x7b2cbf,
     cabin: 0x070614,
-    maxSpeed: 60,
-    accel: 35,
-    brake: 39,
+    maxSpeed: 68,
+    accel: 54,
+    brake: 44,
     reverse: 14,
     reverseMax: 13,
     grip: 11.1,
@@ -224,6 +224,11 @@ export function createCarMesh(spec) {
     wheels.add(w);
   }
   g.add(wheels);
+
+  const lamp = new THREE.SpotLight(0xfff3c4, 10, 46, 0.5, 0.4, 1.1);
+  lamp.position.set(0, 0.85, 1.7);
+  lamp.target.position.set(0, 0, 14);
+  g.add(lamp, lamp.target);
 
   g.userData.wheels = wheels;
   g.userData.tail = [tl, tr];

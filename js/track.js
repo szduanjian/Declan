@@ -224,8 +224,11 @@ function addLamps(group, samples) {
       new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 2.4 })
     );
     head.position.set(x, 6.25, z);
-    const light = new THREE.PointLight(color, 6, 28, 2);
-    light.position.set(x, 6.1, z);
-    group.add(pole, head, light);
+    group.add(pole, head);
+    if (i % 42 === 0) {
+      const light = new THREE.PointLight(color, 8, 32, 2);
+      light.position.set(x, 6.1, z);
+      group.add(light);
+    }
   }
 }

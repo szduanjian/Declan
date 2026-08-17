@@ -69,7 +69,6 @@ let carState = createCarState(spawn);
 let lap = createLapTracker();
 let raceTime = 0;
 let bestTime = loadBest();
-let flash = 0;
 let countdown = 0;
 let last = performance.now();
 
@@ -157,15 +156,17 @@ function previewCar() {
   updateCarVisual(carMesh, carState, carSpec, 0.016);
 }
 
-function startRace() {
+function startRace(force = false) {
+  if ((mode === "countdown" || mode === "racing") && !force) return;
   audio.unlock();
+  document.activeElement?.blur();
   carSpec = CARS[selected];
   if (carMesh.name !== carSpec.id) previewCar();
   resetCarState(carState, spawn);
   lap = createLapTracker();
   raceTime = 0;
   mode = "countdown";
-  countdown = 3.2;
+  countdown = 3.05;
   el.menu.classList.add("hidden");
   el.finish.classList.add("hidden");
   el.hud.classList.remove("hidden");
@@ -226,18 +227,18 @@ window.addEventListener("keydown", (e) => {
       highlightMenu();
       previewCar();
     }
-    if (e.code === "Enter" || e.code === "Space") startRace();
+    if (e.code === "Enter" || e.code === "Space") startRace(true);
   } else if (mode === "racing" || mode === "countdown") {
-    if (e.code === "KeyR") startRace();
+    if (e.code === "KeyR") startRace(true);
     if (e.code === "Escape") returnToMenu();
   } else if (mode === "finish") {
-    if (e.code === "Enter" || e.code === "KeyR" || e.code === "Space") startRace();
+    if (e.code === "Enter" || e.code === "KeyR" || e.code === "Space") startRace(true);
     if (e.code === "Escape") returnToMenu();
   }
 });
 
-document.getElementById("start-btn").addEventListener("click", startRace);
-document.getElementById("again-btn").addEventListener("click", startRace);
+document.getElementById("start-btn").addEventListener("click", () => startRace(true));
+document.getElementById("again-btn").addEventListener("click", () => startRace(true));
 document.getElementById("garage-btn").addEventListener("click", returnToMenu);
 
 function updateCamera(dt) {
@@ -314,20 +315,27 @@ function tick(now) {
   last = now;
 
   if (mode === "menu") {
-    carMesh.rotation.y += dt * 0.35;
-    camPos.set(spawn.x - 8, 4.2, spawn.z - 11);
+    carMesh.rotation.y += dt * 0.55;
+    const orbit = now * 0.00025;
+    camPos.set(
+      spawn.x + Math.sin(orbit) * 7.4,
+      2.6,
+      spawn.z + Math.cos(orbit) * 7.4
+    );
     camera.position.copy(camPos);
-    camera.lookAt(spawn.x, 0.6, spawn.z);
+    camera.lookAt(spawn.x, 0.55, spawn.z);
+    camera.fov = 58;
+    camera.updateProjectionMatrix();
     updateRain(rain, { x: spawn.x, z: spawn.z }, dt);
   } else {
     const input = inputFromKeys();
     if (mode === "countdown") {
       countdown -= dt;
-      const n = Math.ceil(countdown);
-      el.countdown.textContent = countdown <= 0 ? "GO" : String(Math.max(1, n));
-      if (countdown <= 0) {
+      if (countdown > 0) {
+        el.countdown.textContent = String(Math.max(1, Math.ceil(countdown)));
+      } else {
+        el.countdown.textContent = "GO";
         mode = "racing";
-        el.countdown.textContent = "";
         toast("RACE");
       }
       updateCarVisual(carMesh, carState, carSpec, dt);
@@ -338,6 +346,12 @@ function tick(now) {
       updateLap(lap, surface.t);
       if (lap.justLapped && !lap.finished) toast(`LAP ${lap.lap - 1}  ${formatTime(raceTime)}`);
       if (lap.finished) finishRace();
+      if (countdown > -0.7) {
+        countdown -= dt;
+        el.countdown.textContent = countdown > -0.7 ? "GO" : "";
+      } else {
+        el.countdown.textContent = "";
+      }
       updateCarVisual(carMesh, carState, carSpec, dt);
       audio.update(carState.speed, input.throttle, muted);
     } else if (mode === "finish") {
@@ -351,7 +365,6 @@ function tick(now) {
     drawMinimap();
   }
 
-  if (flash > 0) flash -= dt;
   composer.render();
   requestAnimationFrame(tick);
 }

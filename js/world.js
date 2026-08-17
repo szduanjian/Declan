@@ -176,15 +176,15 @@ export function addRain(scene) {
   const count = 1400;
   const positions = new Float32Array(count * 3);
   for (let i = 0; i < count; i++) {
-    positions[i * 3] = (Math.random() - 0.5) * 180;
-    positions[i * 3 + 1] = Math.random() * 40;
-    positions[i * 3 + 2] = (Math.random() - 0.5) * 180;
+    positions[i * 3] = (Math.random() - 0.5) * 120;
+    positions[i * 3 + 1] = Math.random() * 36;
+    positions[i * 3 + 2] = 118 + (Math.random() - 0.5) * 80;
   }
   const geo = new THREE.BufferGeometry();
   geo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
   const mat = new THREE.PointsMaterial({
-    color: 0x9ad8ff,
-    size: 0.12,
+    color: 0xb8e6ff,
+    size: 0.28,
     transparent: true,
     opacity: 0.55,
     depthWrite: false,
