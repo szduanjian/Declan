@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEON CIRCUIT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="viewport"></div>
+  <div class="scanlines"></div>
+
+  <div id="hud" class="hidden">
+    <div class="hud-top">
+      <div class="panel">
+        <div class="label">LAP</div>
+        <div class="value" id="lap-value">1/3</div>
+        <div class="label" id="sector-value">S1</div>
+      </div>
+      <div class="panel">
+        <div class="label">TIME</div>
+        <div class="value" id="time-value">00:00.00</div>
+        <div class="label">BEST <span id="best-value">--:--.--</span></div>
+      </div>
+      <div class="panel">
+        <div class="label">MACHINE</div>
+        <div id="car-name">NEXUS GT</div>
+      </div>
+    </div>
+    <div class="hud-bottom">
+      <div class="panel">
+        <div class="label">SPEED</div>
+        <div id="speed-value">000</div>
+        <div id="speed-unit">KM/H · GEAR <span id="gear-value">N</span></div>
+      </div>
+      <canvas id="minimap" width="160" height="160"></canvas>
+    </div>
+  </div>
+
+  <div id="countdown"></div>
+  <div id="toast"></div>
+
+  <div id="menu">
+    <h1 class="title">NEON CIRCUIT</h1>
+    <p class="subtitle">NIGHT CITY STREET LOOP</p>
+    <div id="car-grid"></div>
+    <div>
+      <button class="btn" id="start-btn">START RACE</button>
+    </div>
+    <p class="hint">W/S or arrows accelerate and brake · A/D steer · ENTER start · R restart · ESC garage · M mute</p>
+  </div>
+
+  <div id="finish" class="hidden">
+    <div id="finish-body"></div>
+    <div>
+      <button class="btn" id="again-btn">RACE AGAIN</button>
+      <button class="btn" id="garage-btn">GARAGE</button>
+    </div>
+  </div>
+
+  <script type="module" src="js/game.js"></script>
+</body>
+</html>
