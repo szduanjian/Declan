@@ -164,6 +164,7 @@ function startRace(force = false) {
   carSpec = CARS[selected];
   if (carMesh.name !== carSpec.id) previewCar();
   resetCarState(carState, spawn);
+  snapChaseCam();
   lap = createLapTracker();
   raceTime = 0;
   mode = "countdown";
@@ -241,6 +242,15 @@ window.addEventListener("keydown", (e) => {
 document.getElementById("start-btn").addEventListener("click", () => startRace(true));
 document.getElementById("again-btn").addEventListener("click", () => startRace(true));
 document.getElementById("garage-btn").addEventListener("click", returnToMenu);
+
+function snapChaseCam() {
+  const hx = Math.sin(carState.heading);
+  const hz = Math.cos(carState.heading);
+  camPos.set(carState.x - hx * 9.2, 3.6, carState.z - hz * 9.2);
+  camTarget.set(carState.x + hx * 10, 1.1, carState.z + hz * 10);
+  camera.position.copy(camPos);
+  camera.lookAt(camTarget);
+}
 
 function updateCamera(dt) {
   const look = 10 + Math.abs(carState.speed) * 0.12;
