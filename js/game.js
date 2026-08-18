@@ -37,7 +37,8 @@ function inputFromKeys() {
   return {
     throttle: up ? 1 : 0,
     brake: down ? 1 : 0,
-    steer: (left ? -1 : 0) + (right ? 1 : 0),
+    // Chase cam lookAt: at heading 0, screen right is world -X. Positive steer yaws the nose left on screen.
+    steer: (left ? 1 : 0) + (right ? -1 : 0),
   };
 }
 

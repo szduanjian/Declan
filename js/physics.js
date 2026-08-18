@@ -41,7 +41,7 @@ export function updateCar(state, input, spec, dt, surface) {
 
   const speedAbs = Math.abs(state.speed);
   const speedNorm = Math.min(1, speedAbs / spec.maxSpeed);
-  const steerLimit = spec.steer * (1 - speedNorm * 0.62);
+  const steerLimit = spec.steer * (1 - speedNorm * 0.28);
   const steerTarget = clamp(input.steer, -1, 1) * steerLimit;
   state.steer += (steerTarget - state.steer) * Math.min(1, 9 * dt);
 
@@ -69,7 +69,8 @@ export function updateCar(state, input, spec, dt, surface) {
 
   const wheelBase = spec.wheelBase;
   if (speedAbs > 0.2) {
-    const turn = (state.speed / wheelBase) * Math.tan(state.steer);
+    // abs(speed): reverse keeps the same on-screen left/right as forward.
+    const turn = (speedAbs / wheelBase) * Math.tan(state.steer);
     state.heading += turn * dt;
     state.yawRate = turn;
   } else {
