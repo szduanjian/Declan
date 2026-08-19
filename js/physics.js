@@ -69,8 +69,7 @@ export function updateCar(state, input, spec, dt, surface) {
 
   const wheelBase = spec.wheelBase;
   if (speedAbs > 0.2) {
-    // abs(speed): reverse keeps the same on-screen left/right as forward.
-    const turn = (speedAbs / wheelBase) * Math.tan(state.steer);
+    const turn = (state.speed / wheelBase) * Math.tan(state.steer);
     state.heading += turn * dt;
     state.yawRate = turn;
   } else {
