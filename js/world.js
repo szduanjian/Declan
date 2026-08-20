@@ -72,12 +72,10 @@ export function createWorld(scene, samples) {
   );
   ground.rotation.x = -Math.PI / 2;
   ground.position.y = -0.02;
-  ground.receiveShadow = true;
   scene.add(ground);
 
   addGrid(scene);
   addBuildings(scene, samples);
-  addRain(scene);
   addSkyline(scene);
 }
 
@@ -208,5 +206,4 @@ export function updateRain(rain, car, dt) {
     }
   }
   pos.needsUpdate = true;
-  rain.position.set(0, 0, 0);
 }

@@ -79,10 +79,6 @@ export const CARS = [
   },
 ];
 
-export function getCar(id) {
-  return CARS.find((c) => c.id === id) || CARS[0];
-}
-
 export function createCarMesh(spec) {
   const g = new THREE.Group();
   g.name = spec.id;
@@ -125,7 +121,6 @@ export function createCarMesh(spec) {
     bodyMat
   );
   body.position.y = tall ? 0.55 : 0.48;
-  body.castShadow = true;
   g.add(body);
 
   const cabin = new THREE.Mesh(
@@ -232,11 +227,10 @@ export function createCarMesh(spec) {
 
   g.userData.wheels = wheels;
   g.userData.tail = [tl, tr];
-  g.userData.body = body;
   return g;
 }
 
-export function updateCarVisual(mesh, state, spec, dt) {
+export function updateCarVisual(mesh, state, dt) {
   mesh.position.set(state.x, 0, state.z);
   mesh.rotation.y = state.heading;
   const roll = -state.steer * Math.min(1, Math.abs(state.speed) / 20) * 0.35;

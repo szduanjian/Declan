@@ -90,7 +90,6 @@ export function addTrack(scene, samples) {
     envMapIntensity: 0.8,
   });
   const road = new THREE.Mesh(geo, mat);
-  road.receiveShadow = true;
   group.add(road);
 
   addRails(group, samples, hw + 0.6);

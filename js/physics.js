@@ -9,8 +9,6 @@ export function createCarState(spawn) {
     vx: 0,
     vz: 0,
     steer: 0,
-    yawRate: 0,
-    slip: 0,
     accelG: 0,
   };
 }
@@ -23,8 +21,6 @@ export function resetCarState(state, spawn) {
   state.vx = 0;
   state.vz = 0;
   state.steer = 0;
-  state.yawRate = 0;
-  state.slip = 0;
   state.accelG = 0;
 }
 
@@ -71,9 +67,6 @@ export function updateCar(state, input, spec, dt, surface) {
   if (speedAbs > 0.2) {
     const turn = (state.speed / wheelBase) * Math.tan(state.steer);
     state.heading += turn * dt;
-    state.yawRate = turn;
-  } else {
-    state.yawRate *= Math.max(0, 1 - 8 * dt);
   }
 
   const fwdX = Math.sin(state.heading);
@@ -90,11 +83,7 @@ export function updateCar(state, input, spec, dt, surface) {
   state.vx += (desiredVx - state.vx) * blend;
   state.vz += (desiredVz - state.vz) * blend;
 
-  const long = state.vx * fwdX + state.vz * fwdZ;
-  const latX = state.vx - fwdX * long;
-  const latZ = state.vz - fwdZ * long;
-  state.speed = long;
-  state.slip = Math.hypot(latX, latZ);
+  state.speed = state.vx * fwdX + state.vz * fwdZ;
 
   state.x += state.vx * dt;
   state.z += state.vz * dt;

@@ -56,10 +56,9 @@ export function buildSamples(count = 420) {
     const i3 = (i1 + 2) % n;
     const x = catmullRom(pts[i0][0], pts[i1][0], pts[i2][0], pts[i3][0], t);
     const z = catmullRom(pts[i0][1], pts[i1][1], pts[i2][1], pts[i3][1], t);
-    samples.push({ x, z, t: i / count, tx: 1, tz: 0, nx: 0, nz: 1, segLen: 1 });
+    samples.push({ x, z, t: i / count, tx: 1, tz: 0, nx: 0, nz: 1 });
   }
 
-  let length = 0;
   for (let i = 0; i < count; i++) {
     const a = samples[i];
     const b = samples[(i + 1) % count];
@@ -72,10 +71,7 @@ export function buildSamples(count = 420) {
     a.tz = tz;
     a.nx = -tz;
     a.nz = tx;
-    a.segLen = seg;
-    length += seg;
   }
-  samples.lengthMeters = length;
   return samples;
 }
 

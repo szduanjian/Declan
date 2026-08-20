@@ -18,7 +18,6 @@ import { createWorld, addRain, updateRain } from "./world.js";
 import { EngineAudio } from "./audio.js";
 
 const BEST_KEY = "neon-circuit-best";
-const BEST_CAR_KEY = "neon-circuit-best-car";
 
 const keys = new Set();
 window.addEventListener("keydown", (e) => {
@@ -108,11 +107,10 @@ function loadBest() {
   return Number.isFinite(n) && n > 0 ? n : null;
 }
 
-function saveBest(time, carId) {
+function saveBest(time) {
   const prev = loadBest();
   if (!prev || time < prev) {
     localStorage.setItem(BEST_KEY, String(time));
-    localStorage.setItem(BEST_CAR_KEY, carId);
     bestTime = time;
     return true;
   }
@@ -125,7 +123,6 @@ function buildMenu() {
     const card = document.createElement("button");
     card.type = "button";
     card.className = "car-card" + (i === selected ? " selected" : "");
-    card.dataset.index = String(i);
     card.innerHTML = `
       <div class="swatch" style="--c:#${car.color.toString(16).padStart(6, "0")};--a:#${car.accent.toString(16).padStart(6, "0")}"></div>
       <div class="meta">
@@ -154,7 +151,7 @@ function previewCar() {
   carMesh = createCarMesh(carSpec);
   scene.add(carMesh);
   resetCarState(carState, spawn);
-  updateCarVisual(carMesh, carState, carSpec, 0.016);
+  updateCarVisual(carMesh, carState, 0.016);
 }
 
 function startRace(force = false) {
@@ -174,13 +171,13 @@ function startRace(force = false) {
   el.hud.classList.remove("hidden");
   el.carName.textContent = carSpec.name;
   el.best.textContent = formatTime(bestTime ?? NaN);
-  toast(`STEER v4 · ${carSpec.name}`);
+  toast(`${carSpec.name} · 3 LAPS`);
 }
 
 function finishRace() {
   mode = "finish";
   audio.stop();
-  const record = saveBest(raceTime, carSpec.id);
+  const record = saveBest(raceTime);
   el.finish.classList.remove("hidden");
   el.finishBody.innerHTML = `
     <h2>${record ? "NEW BEST" : "FINISH"}</h2>
@@ -265,7 +262,7 @@ function updateCamera(dt) {
     carState.z - hz * back
   );
   const t = 1 - Math.exp(-5.2 * dt);
-  camPos.lerp(desired, mode === "menu" ? 0.08 : t);
+  camPos.lerp(desired, t);
   camera.position.copy(camPos);
   camera.lookAt(camTarget);
   camera.fov = THREE.MathUtils.lerp(camera.fov, 58 + Math.abs(carState.speed) * 0.22, 0.08);
@@ -349,7 +346,7 @@ function tick(now) {
         mode = "racing";
         toast("RACE");
       }
-      updateCarVisual(carMesh, carState, carSpec, dt);
+      updateCarVisual(carMesh, carState, dt);
     } else if (mode === "racing") {
       raceTime += dt;
       const surface = querySurface(samples, carState.x, carState.z);
@@ -363,12 +360,12 @@ function tick(now) {
       } else {
         el.countdown.textContent = "";
       }
-      updateCarVisual(carMesh, carState, carSpec, dt);
+      updateCarVisual(carMesh, carState, dt);
       audio.update(carState.speed, input.throttle, muted);
     } else if (mode === "finish") {
       const surface = querySurface(samples, carState.x, carState.z);
       updateCar(carState, { throttle: 0, brake: 0.35, steer: 0 }, carSpec, dt, surface);
-      updateCarVisual(carMesh, carState, carSpec, dt);
+      updateCarVisual(carMesh, carState, dt);
     }
     updateCamera(dt);
     updateRain(rain, carState, dt);
