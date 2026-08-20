@@ -174,7 +174,7 @@ function startRace(force = false) {
   el.hud.classList.remove("hidden");
   el.carName.textContent = carSpec.name;
   el.best.textContent = formatTime(bestTime ?? NaN);
-  toast(`${carSpec.name} · 3 LAPS`);
+  toast(`STEER v3 · ${carSpec.name}`);
 }
 
 function finishRace() {
