@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>「淀湖漫游记」淀山湖亲子趣味健步走活动方案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Noto+Serif+SC:wght@600;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --lake:#0f6e6b;        /* 湖水青 */
+    --lake-deep:#0a4a48;   /* 深湖绿 */
+    --lake-light:#e6f4f1;  /* 浅湖雾 */
+    --persimmon:#e8703a;   /* 柿子橙（秋日主色） */
+    --gold:#d9a441;        /* 金鱼金 */
+    --ink:#26332f;         /* 墨色文字 */
+    --paper:#faf7f0;       /* 米白纸感 */
+    --card:#ffffff;
+    --line:#e2ded2;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.75;
+  }
+  .serif{font-family:"Noto Serif SC","Songti SC",serif;}
+
+  /* ===== 顶部导航 ===== */
+  nav{
+    position:sticky;top:0;z-index:100;
+    background:rgba(250,247,240,.92);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    padding:0 24px;
+  }
+  nav .nav-inner{
+    max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:8px;
+    height:56px;overflow-x:auto;white-space:nowrap;
+  }
+  nav .logo{font-weight:900;color:var(--lake-deep);margin-right:16px;flex-shrink:0;}
+  nav a{
+    color:#5c6b66;text-decoration:none;font-size:14px;padding:6px 12px;border-radius:999px;
+    transition:all .2s;flex-shrink:0;
+  }
+  nav a:hover{background:var(--lake-light);color:var(--lake-deep);}
+
+  /* ===== Hero ===== */
+  header{
+    position:relative;overflow:hidden;
+    background:linear-gradient(160deg,#0a4a48 0%,#0f6e6b 45%,#1a8f83 75%,#3aa899 100%);
+    color:#fff;text-align:center;
+    padding:96px 24px 0;
+  }
+  header .kicker{
+    display:inline-block;border:1px solid rgba(255,255,255,.45);border-radius:999px;
+    padding:6px 20px;font-size:14px;letter-spacing:.35em;text-indent:.35em;
+    margin-bottom:28px;color:#eafff9;
+  }
+  header h1{
+    font-size:clamp(38px,6vw,64px);font-weight:900;letter-spacing:.06em;
+    text-shadow:0 4px 24px rgba(0,0,0,.25);
+  }
+  header h1 .hl{color:#ffd98a;}
+  header .sub{
+    margin-top:18px;font-size:clamp(15px,2vw,19px);color:#d7f2ec;letter-spacing:.12em;
+  }
+  header .tags{margin-top:30px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
+  header .tags span{
+    background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);
+    border-radius:999px;padding:7px 18px;font-size:14px;
+  }
+  header .meta{
+    margin:44px auto 0;max-width:900px;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;
+    background:rgba(255,255,255,.2);border-radius:16px 16px 0 0;overflow:hidden;
+  }
+  header .meta div{background:rgba(10,74,72,.55);padding:18px 10px;}
+  header .meta b{display:block;font-size:19px;color:#ffd98a;margin-bottom:2px;}
+  header .meta small{font-size:12.5px;color:#c9e9e2;letter-spacing:.08em;}
+  header svg.wave{display:block;width:100%;height:70px;margin-top:-1px;}
+
+  /* ===== 版面 ===== */
+  main{max-width:1080px;margin:0 auto;padding:24px;}
+  section{padding:64px 0 8px;}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;}
+  .sec-num{
+    font-family:Georgia,serif;font-size:15px;font-weight:700;color:var(--persimmon);
+    letter-spacing:.15em;
+  }
+  h2{font-size:clamp(24px,3.4vw,32px);font-weight:900;color:var(--lake-deep);letter-spacing:.05em;}
+  .sec-desc{color:#6b7a74;font-size:15px;margin-bottom:28px;max-width:760px;}
+
+  .grid{display:grid;gap:18px;}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr));}
+  .g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));}
+
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:26px 24px;box-shadow:0 2px 10px rgba(38,51,47,.05);
+    transition:transform .25s,box-shadow .25s;
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(38,51,47,.1);}
+  .card h3{font-size:18px;font-weight:700;color:var(--lake-deep);margin-bottom:10px;}
+  .card p{font-size:14.5px;color:#4c5a55;}
+  .icon{
+    width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+    font-size:24px;margin-bottom:14px;background:var(--lake-light);
+  }
+
+  .pill{
+    display:inline-block;background:var(--lake-light);color:var(--lake-deep);
+    border-radius:999px;padding:3px 12px;font-size:12.5px;font-weight:500;margin:2px 3px 2px 0;
+  }
+  .pill.orange{background:#fdeade;color:#c25a24;}
+  .pill.gold{background:#faf1dc;color:#a37718;}
+
+  /* ===== 定位对比 ===== */
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .vs .no,.vs .yes{border-radius:18px;padding:26px 24px;}
+  .vs .no{background:#f3f0ea;border:1px dashed #c9c3b4;color:#8a877d;}
+  .vs .yes{background:linear-gradient(145deg,#0f6e6b,#0a4a48);color:#fff;box-shadow:0 12px 30px rgba(15,110,107,.28);}
+  .vs h3{font-size:17px;margin-bottom:12px;font-weight:700;}
+  .vs ul{list-style:none;font-size:14.5px;}
+  .vs li{padding:5px 0 5px 26px;position:relative;}
+  .vs .no li::before{content:"✕";position:absolute;left:2px;color:#b8b2a2;font-weight:700;}
+  .vs .yes li::before{content:"✓";position:absolute;left:2px;color:#ffd98a;font-weight:700;}
+  @media(max-width:680px){.vs{grid-template-columns:1fr;}}
+
+  /* ===== 路线 ===== */
+  .route-wrap{
+    background:var(--card);border:1px solid var(--line);border-radius:20px;
+    padding:34px 26px;overflow-x:auto;
+  }
+  .route-svg{min-width:820px;width:100%;height:auto;display:block;}
+  .route-notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:22px;}
+  .route-notes div{
+    background:var(--lake-light);border-radius:12px;padding:14px 16px;font-size:13.5px;color:#3d554f;
+  }
+  .route-notes b{color:var(--lake-deep);display:block;margin-bottom:2px;}
+
+  /* ===== 打卡点 ===== */
+  .stamp-card{
+    position:relative;background:var(--card);border:1px solid var(--line);border-radius:20px;
+    padding:28px 26px 24px;overflow:hidden;
+    transition:transform .25s,box-shadow .25s;
+  }
+  .stamp-card:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgba(38,51,47,.12);}
+  .stamp-card .num{
+    position:absolute;top:-14px;right:6px;font-family:Georgia,serif;
+    font-size:92px;font-weight:900;color:rgba(15,110,107,.07);line-height:1;
+  }
+  .stamp-card .badge{
+    display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;
+    color:#fff;background:var(--persimmon);border-radius:999px;padding:4px 14px;margin-bottom:14px;
+    letter-spacing:.06em;
+  }
+  .stamp-card:nth-child(2) .badge{background:#0f6e6b;}
+  .stamp-card:nth-child(3) .badge{background:var(--gold);}
+  .stamp-card:nth-child(4) .badge{background:#a05537;}
+  .stamp-card:nth-child(5) .badge{background:#4e7a3a;}
+  .stamp-card:nth-child(6) .badge{background:#7a4a8f;}
+  .stamp-card h3{font-size:20px;font-weight:900;color:var(--ink);margin-bottom:4px;}
+  .stamp-card .en{font-size:12px;color:#9aa8a2;letter-spacing:.12em;margin-bottom:14px;}
+  .stamp-card p{font-size:14.5px;color:#4c5a55;margin-bottom:12px;}
+  .stamp-card .new{
+    background:#fff8ec;border-left:3px solid var(--gold);border-radius:0 10px 10px 0;
+    padding:10px 14px;font-size:13.5px;color:#7c5c17;margin-bottom:12px;
+  }
+  .stamp-card .new b{color:#a37718;}
+
+  /* ===== 时间轴 ===== */
+  .timeline{position:relative;margin-left:12px;padding-left:34px;}
+  .timeline::before{
+    content:"";position:absolute;left:0;top:6px;bottom:6px;width:3px;
+    background:linear-gradient(var(--lake),var(--persimmon));border-radius:3px;
+  }
+  .t-item{position:relative;padding:0 0 30px;}
+  .t-item::before{
+    content:"";position:absolute;left:-41px;top:6px;width:15px;height:15px;border-radius:50%;
+    background:#fff;border:4px solid var(--lake);
+  }
+  .t-item:nth-child(even)::before{border-color:var(--persimmon);}
+  .t-item .time{
+    display:inline-block;font-weight:900;color:var(--lake-deep);font-size:16px;
+    background:var(--lake-light);border-radius:8px;padding:2px 12px;margin-bottom:6px;
+  }
+  .t-item h4{font-size:16.5px;font-weight:700;margin-bottom:4px;}
+  .t-item p{font-size:14px;color:#5c6b66;max-width:720px;}
+
+  /* ===== 预算表 ===== */
+  .budget-highlight{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:26px;
+  }
+  .budget-highlight .bh{
+    border-radius:16px;padding:22px;text-align:center;color:#fff;
+  }
+  .bh1{background:linear-gradient(145deg,#0f6e6b,#0a4a48);}
+  .bh2{background:linear-gradient(145deg,#e8703a,#c25a24);}
+  .bh3{background:linear-gradient(145deg,#d9a441,#b3821f);}
+  .budget-highlight b{display:block;font-size:30px;font-weight:900;}
+  .budget-highlight small{font-size:13px;opacity:.9;}
+
+  table{
+    width:100%;border-collapse:collapse;background:#fff;border-radius:16px;overflow:hidden;
+    box-shadow:0 2px 10px rgba(38,51,47,.06);font-size:14.5px;
+  }
+  thead th{
+    background:var(--lake-deep);color:#fff;text-align:left;padding:14px 16px;font-weight:700;
+    letter-spacing:.05em;white-space:nowrap;
+  }
+  tbody td{padding:13px 16px;border-bottom:1px solid #eef0ea;vertical-align:top;color:#3d4a45;}
+  tbody tr:nth-child(even){background:#fbfaf6;}
+  tbody tr:hover{background:var(--lake-light);}
+  td.money,th.money{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:700;color:var(--lake-deep);}
+  tfoot td{padding:14px 16px;font-weight:900;background:#fff4e8;color:#c25a24;font-size:15.5px;}
+  .table-scroll{overflow-x:auto;border-radius:16px;}
+
+  /* ===== 甘特推进 ===== */
+  .gantt .g-row{display:grid;grid-template-columns:170px 1fr;align-items:center;gap:12px;margin-bottom:12px;}
+  .gantt .g-label{font-size:13.5px;font-weight:700;color:var(--lake-deep);text-align:right;}
+  .gantt .g-track{background:#efece3;border-radius:999px;height:26px;position:relative;}
+  .gantt .g-bar{
+    position:absolute;top:0;bottom:0;border-radius:999px;
+    background:linear-gradient(90deg,var(--lake),#3aa899);
+    display:flex;align-items:center;padding:0 12px;color:#fff;font-size:12px;white-space:nowrap;overflow:hidden;
+  }
+  .gantt .g-bar.o{background:linear-gradient(90deg,var(--persimmon),#f09a63);}
+  .gantt .g-bar.g{background:linear-gradient(90deg,var(--gold),#e5c069);}
+  .gantt .g-scale{display:grid;grid-template-columns:170px 1fr;gap:12px;margin-bottom:8px;}
+  .gantt .g-months{display:grid;grid-template-columns:repeat(10,1fr);font-size:11.5px;color:#9aa8a2;}
+  @media(max-width:640px){
+    .gantt .g-row,.gantt .g-scale{grid-template-columns:110px 1fr;}
+    .gantt .g-label{font-size:12px;}
+  }
+
+  /* ===== 风险 ===== */
+  .risk-card{border-left:4px solid var(--persimmon);}
+  .risk-card h3{display:flex;align-items:center;gap:8px;}
+  .risk-card .tag{
+    font-size:11.5px;color:#fff;background:var(--persimmon);border-radius:6px;padding:1px 8px;font-weight:400;
+  }
+  .risk-card p b{color:var(--lake-deep);}
+
+  /* ===== 页脚 ===== */
+  footer{
+    margin-top:80px;background:var(--lake-deep);color:#bfe0da;text-align:center;
+    padding:44px 24px;font-size:13.5px;letter-spacing:.05em;
+  }
+  footer b{color:#ffd98a;}
+
+  .note{
+    background:#fff8ec;border:1px solid #f0dfb8;border-radius:14px;padding:16px 20px;
+    font-size:13.5px;color:#7c5c17;margin-top:20px;
+  }
+  .note b{color:#a37718;}
+
+  @media print{
+    nav{display:none;}
+    header{padding-top:48px;}
+    .card,.stamp-card{break-inside:avoid;}
+    section{padding:32px 0 8px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="logo">淀湖漫游记</span>
+    <a href="#overview">活动概览</a>
+    <a href="#concept">创意主线</a>
+    <a href="#route">路线规划</a>
+    <a href="#stamps">六大打卡点</a>
+    <a href="#flow">当日流程</a>
+    <a href="#budget">预算明细</a>
+    <a href="#plan">推进计划</a>
+    <a href="#risk">风险预案</a>
+  </div>
+</nav>
+
+<header>
+  <div class="kicker">淀山湖镇 · 亲子趣味健步走</div>
+  <h1 class="serif">「淀湖<span class="hl">漫游记</span>」</h1>
+  <p class="sub">一本护照 · 六枚印章 · 四点五公里 —— 带孩子把江南水乡走成一场寻宝记</p>
+  <div class="tags">
+    <span>🎭 戏曲之乡</span><span>🗣 土话方言</span><span>🐟 淀湖金鱼</span><span>🚂 红星村小火车</span><span>☕ 村咖终点</span>
+  </div>
+  <div class="meta">
+    <div><b>10月下旬</b><small>首选 10/24（周六）<br>备选 11/7（周六）</small></div>
+    <div><b>100 组家庭</b><small>约 250–300 人</small></div>
+    <div><b>约 4.5 公里</b><small>乡间小路 · 半天完赛</small></div>
+    <div><b>6 个打卡点</b><small>集章 + 抽奖 + 奖牌</small></div>
+    <div><b>≤ 6.8 万元</b><small>成本控制目标<br>（总预算 10 万以内）</small></div>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 70" preserveAspectRatio="none">
+    <path d="M0,40 C240,70 480,10 720,35 C960,60 1200,20 1440,45 L1440,70 L0,70 Z" fill="#faf7f0"/>
+  </svg>
+</header>
+
+<main>
+
+  <!-- 01 活动概览 -->
+  <section id="overview">
+    <div class="sec-head"><span class="sec-num">01</span><h2>活动概览</h2></div>
+    <p class="sec-desc">依据 9 月 1 日策划会议结论：本活动定位为「亲子徒步 + 趣味互动 + 文化展示」，不做竞速比赛，突出淀山湖镇本地特色，避免与市面常见健步走活动同质化。</p>
+    <div class="grid g3">
+      <div class="card"><div class="icon">📅</div><h3>活动时间</h3>
+        <p><b>首选：2026年10月24日（周六）8:30–12:30</b><br>备选：11月7日（周六），秋高气爽、体感适宜。半天时长，匹配亲子徒步强度。</p></div>
+      <div class="card"><div class="icon">📍</div><h3>活动地点</h3>
+        <p>淀山湖镇乡村线路：<b>乐营区域（起点）→ 红星村小火车 → 小爱咖啡村咖（终点）</b>。全程避开红绿灯大马路，减少交通管制需求。</p></div>
+      <div class="card"><div class="icon">👨‍👩‍👧</div><h3>参与对象</h3>
+        <p><b>100 组家庭（约 250–300 人）</b>，建议儿童年龄 4–12 岁。每组家庭 1–2 名大人 + 1–2 名孩子，实名报名、限额招募。</p></div>
+      <div class="card"><div class="icon">🎯</div><h3>活动定位</h3>
+        <p>趣味亲子徒步，<b>重互动、重文化、重体验，不计时、不排名</b>，完成全程集章即为"完赛"。</p></div>
+      <div class="card"><div class="icon">🎟</div><h3>报名方式</h3>
+        <p>建议收取报名费 <b>59 元/组</b>（对应有价值回馈：漫游护照、完赛奖牌、抽奖资格、伴手礼、小火车体验），既筛选有效报名、又冲抵部分成本。</p></div>
+      <div class="card"><div class="icon">🏛</div><h3>组织架构</h3>
+        <p>主办：淀山湖镇人民政府（拟）<br>承办：活动执行团队<br>协办：红星村、小爱咖啡、镇文体站、本地商户市集。</p></div>
+    </div>
+  </section>
+
+  <!-- 02 创意主线 -->
+  <section id="concept">
+    <div class="sec-head"><span class="sec-num">02</span><h2>创意主线：一本护照，走读淀山湖</h2></div>
+    <p class="sec-desc">用「淀湖漫游护照」把 6 个打卡点串成一条有故事的线：每组家庭出发时领取一本手绘护照，每个打卡点完成任务即盖一枚特色印章，集满 6 章解锁终点抽奖与完赛奖牌——把"走路"变成"通关"。</p>
+
+    <div class="vs">
+      <div class="no">
+        <h3>我们不做的（市面同质化做法）</h3>
+        <ul>
+          <li>竞速跑步比赛、计时排名</li>
+          <li>单纯发水发牌、走完即散</li>
+          <li>与本地文化无关的通用游戏</li>
+          <li>大马路长距离拉练，管制成本高</li>
+        </ul>
+      </div>
+      <div class="yes">
+        <h3>我们主打的（淀山湖独有体验）</h3>
+        <ul>
+          <li>戏曲之乡：戏服换装、拍照留念</li>
+          <li>土话文化：方言游戏、配音挑战</li>
+          <li>金鱼特产：科普 + 互动 + 带一尾回家</li>
+          <li>小火车联动：徒步 + 铁轨慢旅行</li>
+          <li>村咖终点：市集、抽奖、亲子休憩</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid g3" style="margin-top:18px;">
+      <div class="card"><div class="icon">📖</div><h3>淀湖漫游护照</h3>
+        <p>手绘风护照内含路线图、打卡任务、6 格印章位与"家庭合影框"。活动后即是纪念品，家长自发晒圈，形成二次传播。</p></div>
+      <div class="card"><div class="icon">🎁</div><h3>家庭任务盲盒</h3>
+        <p>出发前每组抽取一个"隐藏任务"（如：全程找到 3 种颜色的叶子 / 学会一句淀山湖话），终点验收成功可获额外抽奖码，增加惊喜感。</p></div>
+      <div class="card"><div class="icon">🐠</div><h3>金鱼拼图奖牌</h3>
+        <p>完赛奖牌设计为<b>金鱼造型可拆分冰箱贴</b>（鱼身+鱼尾两片磁贴），呼应"淀山湖金鱼"特产，比普通挂牌更有留存价值与话题性。</p></div>
+    </div>
+  </section>
+
+  <!-- 03 路线 -->
+  <section id="route">
+    <div class="sec-head"><span class="sec-num">03</span><h2>路线规划（约 4.5 公里）</h2></div>
+    <p class="sec-desc">按会议共识：路线围绕乐营区域展开，终点设在小爱咖啡；具体走向待王总 10 月前实地考察村咖儿童区后微调，以下为推荐示意。</p>
+
+    <div class="route-wrap">
+      <svg class="route-svg" viewBox="0 0 900 240" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="pathGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#0f6e6b"/><stop offset="1" stop-color="#e8703a"/>
+          </linearGradient>
+        </defs>
+        <path d="M60,170 C160,60 240,60 330,120 C420,180 500,180 580,110 C650,50 740,60 830,130"
+              fill="none" stroke="url(#pathGrad)" stroke-width="6" stroke-linecap="round" stroke-dasharray="1 14"/>
+        <!-- 起点 -->
+        <circle cx="60" cy="170" r="16" fill="#0f6e6b"/>
+        <text x="60" y="176" text-anchor="middle" font-size="14" fill="#fff">起</text>
+        <text x="60" y="210" text-anchor="middle" font-size="13" fill="#26332f" font-weight="bold">乐营广场</text>
+        <text x="60" y="226" text-anchor="middle" font-size="11" fill="#9aa8a2">签到·热身·发护照</text>
+        <!-- P1 -->
+        <circle cx="185" cy="88" r="13" fill="#e8703a"/>
+        <text x="185" y="93" text-anchor="middle" font-size="12" fill="#fff">1</text>
+        <text x="185" y="62" text-anchor="middle" font-size="12.5" fill="#26332f" font-weight="bold">梨园换装间</text>
+        <!-- P2 -->
+        <circle cx="330" cy="120" r="13" fill="#0f6e6b"/>
+        <text x="330" y="125" text-anchor="middle" font-size="12" fill="#fff">2</text>
+        <text x="330" y="155" text-anchor="middle" font-size="12.5" fill="#26332f" font-weight="bold">土话盲盒亭</text>
+        <!-- P3 -->
+        <circle cx="460" cy="163" r="13" fill="#d9a441"/>
+        <text x="460" y="168" text-anchor="middle" font-size="12" fill="#fff">3</text>
+        <text x="460" y="198" text-anchor="middle" font-size="12.5" fill="#26332f" font-weight="bold">金鱼奇遇馆</text>
+        <!-- P4 -->
+        <circle cx="580" cy="110" r="13" fill="#a05537"/>
+        <text x="580" y="115" text-anchor="middle" font-size="12" fill="#fff">4</text>
+        <text x="580" y="84" text-anchor="middle" font-size="12.5" fill="#26332f" font-weight="bold">小火车慢邮局</text>
+        <text x="580" y="99" text-anchor="middle" font-size="11" fill="#9aa8a2">红星村站</text>
+        <!-- P5 -->
+        <circle cx="700" cy="70" r="13" fill="#4e7a3a"/>
+        <text x="700" y="75" text-anchor="middle" font-size="12" fill="#fff">5</text>
+        <text x="700" y="46" text-anchor="middle" font-size="12.5" fill="#26332f" font-weight="bold">湖畔自然侦探</text>
+        <!-- 终点 -->
+        <circle cx="830" cy="130" r="16" fill="#e8703a"/>
+        <text x="830" y="136" text-anchor="middle" font-size="14" fill="#fff">终</text>
+        <text x="830" y="170" text-anchor="middle" font-size="13" fill="#26332f" font-weight="bold">小爱咖啡</text>
+        <text x="830" y="186" text-anchor="middle" font-size="11" fill="#9aa8a2">⑥集章抽奖·市集·颁奖</text>
+      </svg>
+
+      <div class="route-notes">
+        <div><b>🚂 小火车接驳</b>红星村小火车作为体验环节嵌入第 4 打卡点，家庭分 3 批乘坐短程区间，缓解人流、增加亮点。</div>
+        <div><b>🚧 交通与安全</b>全程乡间小路，避开红绿灯大马路；每 500 米设 1 名引导志愿者，岔路口设醒目导视旗。</div>
+        <div><b>♿ 亲子友好</b>坡度平缓、可推婴儿车；沿途设 2 处补给点（饮水、小食）与 1 处医疗点，收尾车全程跟随。</div>
+        <div><b>📋 待确认事项</b>小爱咖啡室外空间与新建儿童游玩区可用范围（王总 10 月前实地考察）；乐营内部走向按考察结果微调。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 打卡点 -->
+  <section id="stamps">
+    <div class="sec-head"><span class="sec-num">04</span><h2>六大打卡点：互动内容设计</h2></div>
+    <p class="sec-desc">在会议既有创意（戏服试穿、方言游戏、金鱼展售、集章抽奖、科普问答）基础上，每个点位叠加一个「创新玩法」，让互动可晒、可带走、可传播。每点通关时长约 8–12 分钟，错峰分流。</p>
+
+    <div class="grid g2">
+      <div class="stamp-card"><span class="num">1</span>
+        <span class="badge">🎭 戏曲之乡</span>
+        <h3>梨园换装间</h3>
+        <div class="en">OPERA DRESS-UP STUDIO</div>
+        <p><b>基础玩法：</b>备 8–10 套儿童/成人戏服与头饰，家庭换装后在戏台背景板前由工作人员用拍立得留影，照片当场贴进护照合影框。</p>
+        <div class="new"><b>✦ 创新点：AI 戏曲全家福。</b>现场扫码上传合影，即时生成戏曲海报风格的电子全家福（自带活动水印与话题标签），一键转发朋友圈——低成本撬动自传播。</div>
+        <span class="pill">印章：脸谱章</span><span class="pill orange">拍照点</span>
+      </div>
+
+      <div class="stamp-card"><span class="num">2</span>
+        <span class="badge">🗣 土话文化</span>
+        <h3>土话盲盒亭</h3>
+        <div class="en">DIALECT BLIND-BOX PAVILION</div>
+        <p><b>基础玩法：</b>"方言猜猜看"——抽取词卡，听本地爷爷奶奶志愿者念淀山湖土话，孩子猜普通话意思，答对 3 题过关。</p>
+        <div class="new"><b>✦ 创新点：方言配音挑战。</b>设一个"土话留声亭"，孩子跟读一句方言吉祥话并录音，生成语音电子明信片发送到家长手机；优秀录音剪进活动回顾视频，邀请老少同框，成为最有温度的传播素材。</div>
+        <span class="pill">印章：话匣章</span><span class="pill orange">代际互动</span>
+      </div>
+
+      <div class="stamp-card"><span class="num">3</span>
+        <span class="badge">🐟 金鱼特产</span>
+        <h3>金鱼奇遇馆</h3>
+        <div class="en">GOLDFISH WONDER HOUSE</div>
+        <p><b>基础玩法：</b>金鱼品种科普小展 + 3 道亲子问答（转盘出题），答对盖章；现场设金鱼展售/赠送角，联动本地养殖户。</p>
+        <div class="new"><b>✦ 创新点："领养一尾淀湖金鱼"。</b>过关家庭可凭章领取一尾装袋小金鱼 + 一张《养鱼新手卡》，把"淀山湖金鱼之乡"带回家；不便携带的家庭可改选金鱼水拓画 DIY 书签。</div>
+        <span class="pill">印章：金鱼章</span><span class="pill gold">特产联动</span>
+      </div>
+
+      <div class="stamp-card"><span class="num">4</span>
+        <span class="badge">🚂 红星村</span>
+        <h3>小火车慢邮局</h3>
+        <div class="en">SLOW-MAIL TRAIN STATION</div>
+        <p><b>基础玩法：</b>家庭分批乘坐红星村小火车短程区间（含在报名回馈内），车厢内设"车窗寻宝"小任务（找到沿途 3 个指定标志物）。</p>
+        <div class="new"><b>✦ 创新点：写给一年后的信。</b>站台设"慢邮局"，孩子写/画一张明信片投入慢递邮筒，由主办方一年后（下一届活动前）统一寄出——为活动 IP 化埋下伏笔，天然带动来年复购报名。</div>
+        <span class="pill">印章：火车章</span><span class="pill orange">情感记忆点</span>
+      </div>
+
+      <div class="stamp-card"><span class="num">5</span>
+        <span class="badge">🌿 自然科普</span>
+        <h3>湖畔自然侦探</h3>
+        <div class="en">LAKESIDE NATURE DETECTIVE</div>
+        <p><b>基础玩法：</b>领取"自然侦探任务卡"：拾取落叶完成拓印画、辨认 2 种水乡植物、观察记录 1 种小昆虫，完成任一项即过关。</p>
+        <div class="new"><b>✦ 创新点：家庭任务盲盒在此验收。</b>出发时抽到的隐藏任务在本点提交验收，成功者获得"侦探加章"（额外抽奖码），把全程 4.5 公里都变成游戏场。</div>
+        <span class="pill">印章：叶子章</span><span class="pill">轻量低成本</span>
+      </div>
+
+      <div class="stamp-card"><span class="num">6</span>
+        <span class="badge">☕ 村咖终点</span>
+        <h3>村咖能量补给站</h3>
+        <div class="en">VILLAGE CAFÉ FINISH LINE</div>
+        <p><b>基础玩法：</b>集满 6 章即完成挑战：领取金鱼拼图奖牌 + 伴手礼，凭护照参与终点大抽奖（一二三等奖 + 惊喜奖）；同步开设乡村市集，展陈镇特色农品与文创。</p>
+        <div class="new"><b>✦ 创新点：完赛照片墙 + 村咖联名券。</b>拍立得照片可选贴上"完赛荣誉墙"拼成大幅金鱼图案；发放小爱咖啡满减联名券，为村咖引流、延长家庭停留消费时间，反哺在地商业。</div>
+        <span class="pill">印章：完赛大章</span><span class="pill gold">抽奖 · 颁奖 · 市集</span>
+      </div>
+    </div>
+
+    <div class="note"><b>分流机制：</b>100 组家庭按报名顺序分为红、黄、蓝、绿 4 个批次，间隔 10 分钟出发（波次发枪），每个打卡点配 2–3 条并行任务通道，避免排队积压；护照颜色即批次标识，便于志愿者识别引导。</div>
+  </section>
+
+  <!-- 05 流程 -->
+  <section id="flow">
+    <div class="sec-head"><span class="sec-num">05</span><h2>活动当日流程（半天制）</h2></div>
+    <p class="sec-desc">总时长约 4 小时，符合亲子徒步强度；徒步净时长约 2.5 小时（含打卡互动）。</p>
+    <div class="timeline">
+      <div class="t-item"><span class="time">7:30 – 8:30</span><h4>工作准备 · 签到入场</h4><p>各点位布置完毕、志愿者到岗；家庭签到，领取漫游护照、号码贴、任务盲盒与补给腰包；亲子涂鸦区、合影拱门暖场。</p></div>
+      <div class="t-item"><span class="time">8:30 – 8:50</span><h4>开幕仪式 · 亲子热身操</h4><p>领导简短致辞（3 分钟内），教练带领亲子热身操，讲解安全须知与玩法规则，鸣笛出发。</p></div>
+      <div class="t-item"><span class="time">8:50 – 9:20</span><h4>分批出发</h4><p>红、黄、蓝、绿 4 批次每 10 分钟一波出发，志愿者带队引导。</p></div>
+      <div class="t-item"><span class="time">8:50 – 11:30</span><h4>徒步 + 六点打卡</h4><p>家庭按路线依次通关 6 个打卡点，其间穿插小火车分批接驳体验；补给点、医疗点、收尾车全程保障。</p></div>
+      <div class="t-item"><span class="time">11:00 – 12:15</span><h4>终点嘉年华</h4><p>陆续抵达小爱咖啡：验章领奖牌与伴手礼、完赛照片墙合影、逛乡村市集；12:00 举行大抽奖开奖。</p></div>
+      <div class="t-item"><span class="time">12:15 – 12:30</span><h4>合影散场 · 场地恢复</h4><p>全体大合影，有序散场；执行团队清场、物资回收、复盘留档。</p></div>
+    </div>
+  </section>
+
+  <!-- 06 预算 -->
+  <section id="budget">
+    <div class="sec-head"><span class="sec-num">06</span><h2>预算明细（成本控制在 6–7 万元）</h2></div>
+    <p class="sec-desc">总预算按 10 万以内申报，实际执行成本目标 <b>6.8 万元封顶</b>；报名费收入可再冲抵约 0.6 万元，净支出约 6.2 万元。以下按 100 组家庭 / 300 人规模测算。</p>
+
+    <div class="budget-highlight">
+      <div class="bh bh1"><b>68,000 元</b><small>执行成本合计（含机动金）</small></div>
+      <div class="bh bh2"><b>5,900 元</b><small>报名费收入（59元 × 100组）</small></div>
+      <div class="bh bh3"><b>≈ 62,100 元</b><small>预计净支出 ≤ 7 万目标</small></div>
+    </div>
+
+    <div class="table-scroll">
+    <table>
+      <thead>
+        <tr><th style="width:52px;">序号</th><th style="width:180px;">类别</th><th>明细说明</th><th class="money">金额（元）</th><th class="money">占比</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><b>视觉与物料制作</b></td><td>主视觉设计、漫游护照 320 本、印章 7 枚、起终点拱门、导视旗/指示牌、打卡点背景板与氛围布置、号码贴</td><td class="money">11,000</td><td class="money">16.2%</td></tr>
+        <tr><td>2</td><td><b>奖牌与参赛包</b></td><td>金鱼拼图冰箱贴奖牌 320 枚（约25元/枚）、完赛伴手礼（文创贴纸+小食）、补给腰包</td><td class="money">14,000</td><td class="money">20.6%</td></tr>
+        <tr><td>3</td><td><b>打卡点道具耗材</b></td><td>戏服头饰租赁 10 套、拍立得机租赁+相纸 350 张、方言词卡与留声设备、金鱼 120 尾+氧气袋+新手卡、水拓画/拓印 DIY 材料、明信片+慢递邮筒</td><td class="money">9,500</td><td class="money">14.0%</td></tr>
+        <tr><td>4</td><td><b>小火车接驳</b></td><td>红星村小火车包时段合作（按团体价洽谈，参考散客价：一大一小 39.9 元/组，100 组分 3 批）</td><td class="money">6,000</td><td class="money">8.8%</td></tr>
+        <tr><td>5</td><td><b>抽奖奖品</b></td><td>一等奖 2 名（亲子帐篷）、二等奖 5 名（保温杯套装）、三等奖 20 名（文具礼盒）、惊喜奖若干（村咖券、火车票）</td><td class="money">5,000</td><td class="money">7.4%</td></tr>
+        <tr><td>6</td><td><b>人员执行</b></td><td>执行统筹 4 人、志愿者 30 人（补贴+餐费+统一马甲）、热身操教练、摄影摄像 2 人</td><td class="money">8,000</td><td class="money">11.8%</td></tr>
+        <tr><td>7</td><td><b>安全保障</b></td><td>300 人活动意外险、医疗点（校医/村医+急救包）、安保协调、收尾保障车、对讲机租赁</td><td class="money">6,500</td><td class="money">9.6%</td></tr>
+        <tr><td>8</td><td><b>开幕舞台音响</b></td><td>小型舞台桁架、音响话筒、鸣笛道具、暖场音乐</td><td class="money">3,500</td><td class="money">5.1%</td></tr>
+        <tr><td>9</td><td><b>宣传推广</b></td><td>报名 H5/小程序、预热海报、活动回顾视频剪辑</td><td class="money">3,000</td><td class="money">4.4%</td></tr>
+        <tr><td>10</td><td><b>机动预备金</b></td><td>天气应对、临时加订物资等不可预见费（约小计的 8%）</td><td class="money">1,500</td><td class="money">2.2%</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><td colspan="3">合计（申报口径建议按 10 万以内报备，执行按此控制）</td><td class="money" style="color:#c25a24;">68,000</td><td class="money" style="color:#c25a24;">100%</td></tr>
+      </tfoot>
+    </table>
+    </div>
+
+    <div class="note"><b>控本三招：</b>① 戏服、拍立得、音响均采用租赁而非采购；② 金鱼、市集摊位、村咖券以资源置换/协办形式落地（养殖户获展销位、村咖获客流）；③ 志愿者以镇文体站与学校家长志愿队为主，仅发补贴与餐费。如领导审批额度收紧，可优先压缩第 5、9 项，保底成本可降至约 6.3 万元。</div>
+  </section>
+
+  <!-- 07 推进计划 -->
+  <section id="plan">
+    <div class="sec-head"><span class="sec-num">07</span><h2>筹备推进计划</h2></div>
+    <p class="sec-desc">按会议要求"方案先行、审批先行"：本方案于 9 月 8 日前提交王总，随即启动内部经费审批，确保 10 月活动如期落地；若审批或天气原因顺延，则整体平移至 11 月 7 日备选日执行。</p>
+
+    <div class="gantt card" style="padding:28px 24px;">
+      <div class="g-scale"><span></span>
+        <div class="g-months">
+          <span>9月上</span><span>9月中</span><span>9月下</span><span>10月上</span><span>10月中</span><span>10/24</span><span>10月下</span><span>11月上</span><span>11/7</span><span>11月中</span>
+        </div>
+      </div>
+      <div class="g-row"><span class="g-label">方案提交与汇报</span><div class="g-track"><div class="g-bar" style="left:0;width:14%;">9/8 前提交</div></div></div>
+      <div class="g-row"><span class="g-label">经费审批流程</span><div class="g-track"><div class="g-bar o" style="left:8%;width:20%;">王总汇报 · 锁定经费</div></div></div>
+      <div class="g-row"><span class="g-label">路线实地踩线</span><div class="g-track"><div class="g-bar g" style="left:22%;width:16%;">村咖场地考察 · 定线</div></div></div>
+      <div class="g-row"><span class="g-label">供应商与物料</span><div class="g-track"><div class="g-bar" style="left:30%;width:22%;">比价下单 · 打样 · 制作</div></div></div>
+      <div class="g-row"><span class="g-label">报名招募宣传</span><div class="g-track"><div class="g-bar o" style="left:38%;width:16%;">H5 上线 · 100 组满员</div></div></div>
+      <div class="g-row"><span class="g-label">彩排与执行</span><div class="g-track"><div class="g-bar g" style="left:50%;width:8%;">全流程彩排</div><div class="g-bar o" style="left:59%;width:5%;">正式活动</div></div></div>
+      <div class="g-row"><span class="g-label">备选日预案</span><div class="g-track"><div class="g-bar" style="left:70%;width:14%;opacity:.55;">顺延至 11/7 执行</div></div></div>
+      <div class="g-row"><span class="g-label">复盘与结算</span><div class="g-track"><div class="g-bar g" style="left:64%;width:30%;">回顾传播 · 费用核销 · 复盘</div></div></div>
+    </div>
+
+    <div class="grid g3" style="margin-top:18px;">
+      <div class="card"><div class="icon">🧑‍💼</div><h3>分工：策划执行</h3><p>打卡点内容深化、供应商比价、志愿者招募培训、当日总控——活动执行团队负责。</p></div>
+      <div class="card"><div class="icon">📝</div><h3>分工：审批协调</h3><p>方案向领导汇报、经费审批推进、村咖/乐营/红星村场地协调——王总负责。</p></div>
+      <div class="card"><div class="icon">📣</div><h3>分工：宣传报名</h3><p>预热海报与 H5 报名上线、媒体邀约、活动回顾发布——宣传条线负责，报名开放后预计 3–5 天满员。</p></div>
+    </div>
+  </section>
+
+  <!-- 08 风险预案 -->
+  <section id="risk">
+    <div class="sec-head"><span class="sec-num">08</span><h2>风险预案</h2></div>
+    <p class="sec-desc">对齐"宁可流程走在前面"的原则：所有预案在审批阶段一并报备，避免临期仓促。</p>
+    <div class="grid g2">
+      <div class="card risk-card"><h3>🌧 天气风险 <span class="tag">高关注</span></h3>
+        <p>提前 7 天/3 天/1 天三次研判天气。小雨：备一次性雨衣照常进行（雨天徒步别有趣味）；中雨以上：<b>整体顺延至 11 月 7 日备选日</b>，物料全部通用不浪费；报名系统预留改期通知功能。</p></div>
+      <div class="card risk-card"><h3>🚑 安全风险 <span class="tag">高关注</span></h3>
+        <p>全员购买意外险；路线避开大马路与临水危险区段，临水段加装警戒带并加派志愿者；配医疗点+随队急救包+收尾保障车；<b>儿童佩戴联系卡（家长手机号）</b>，设走失应急广播机制。</p></div>
+      <div class="card risk-card"><h3>👥 人流与排队 <span class="tag">中关注</span></h3>
+        <p>4 批次波次出发 + 每点多通道并行；小火车分 3 批固定时段乘坐，凭护照批次色乘车；终点抽奖固定 12:00 开奖，牵引家庭自然分散停留。</p></div>
+      <div class="card risk-card"><h3>💰 审批与费用 <span class="tag">中关注</span></h3>
+        <p>方案 9/8 前提交、费用先行申报锁定；预算含 8% 机动金；若批复额度低于预期，按"控本三招"降至 6.3 万保底方案执行，核心体验（护照、集章、奖牌、小火车）不缩水。</p></div>
+    </div>
+  </section>
+
+  <!-- 09 预期成效 -->
+  <section id="outcome">
+    <div class="sec-head"><span class="sec-num">09</span><h2>预期成效</h2></div>
+    <div class="grid g3">
+      <div class="card"><div class="icon">😊</div><h3>参与体验</h3><p>100 组家庭完赛率目标 ≥ 95%，满意度问卷 ≥ 4.6/5；"护照+奖牌+慢递明信片"形成长效记忆点。</p></div>
+      <div class="card"><div class="icon">📱</div><h3>传播声量</h3><p>AI 戏曲全家福与方言配音自带分享属性，目标家长自发晒圈 ≥ 60%，活动话题本地曝光 10 万+，回顾视频 1 支。</p></div>
+      <div class="card"><div class="icon">🏘</div><h3>在地带动</h3><p>为红星村小火车、小爱咖啡、金鱼养殖户、市集商户直接导流约 300 人次；"慢递明信片"为下一届活动预埋复购钩子，逐步沉淀为淀山湖镇年度亲子 IP。</p></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p class="serif" style="font-size:17px;margin-bottom:8px;">「淀湖漫游记」淀山湖亲子趣味健步走活动方案</p>
+  <p>方案版本 V1.0 · 2026年9月 · 依据 9/1 策划会议纪要编制 · 提交人：活动执行组 · 审核：<b>王总</b></p>
+  <p style="margin-top:6px;opacity:.7;">路线细节以实地踩线为准 · 预算以最终审批额度为准</p>
+</footer>
+
+</body>
+</html>
