@@ -1,0 +1,17 @@
+{
+  "name": "Declan static web",
+  "install": "python3 --version && node --version",
+  "terminals": [
+    {
+      "name": "web",
+      "command": "python3 -m http.server 8000 --bind 0.0.0.0",
+      "description": "Static file server for the repository root. Open forwarded port 8000 in a browser to view the site/app on the checked-out branch (e.g. the NEON CIRCUIT racing game)."
+    }
+  ],
+  "ports": [
+    {
+      "name": "web",
+      "port": 8000
+    }
+  ]
+}
