@@ -247,6 +247,17 @@ add(strings(26, fd, 400, attack=0.02), FINAL_T, gain=0.18)
 for k in range(12):
     add(timpani(50, 0.3), FINAL_T - 1.0 + k / 12, gain=0.05 + 0.25 * k / 12)
 
+# opening: drum hit and horn drone under the title so the film starts audibly
+add(boom(), 0.05, gain=0.7)
+add(crash(3.5), 0.05, gain=0.08)
+for m in (38, 45, 50):
+    add(brass(m, 7.0, bright=0.3), 0.05, pan=(m - 45) / 10, gain=0.07)
+for m in (50, 57, 62):
+    add(strings(m, 14.0, 1400, attack=1.5, release=1.0), 0.3, pan=(m - 57) / 8, gain=0.06)
+for k in range(16):
+    add(timpani(38, 0.3), 13.0 + k * 2.0 / 16, gain=0.05 + 0.3 * (k / 16) ** 1.5)
+
+
 # ---------------------------------------------------------------- mix
 def reverb(x, seed, rt=2.6):
     r = np.random.default_rng(seed)
@@ -263,10 +274,13 @@ wetL, wetR = reverb(L, 1), reverb(R, 2)
 outL = L + 0.45 * wetL
 outR = R + 0.45 * wetR
 st = np.stack([outL, outR], axis=1)
+t = np.arange(N) / SR
+# lift the quiet early chapters so the arc stays audible on laptop speakers
+lift = np.interp(t, [0, 15, 30, 60, 90, 136], [2.2, 1.9, 1.6, 1.3, 1.0, 1.0])
+st *= lift[:, None]
 st /= np.max(np.abs(st)) + 1e-9
 st = np.tanh(st * 1.6) / np.tanh(1.6)
-t = np.arange(N) / SR
-fade = np.clip(t / 1.5, 0, 1) * np.clip((DUR - t) / 2.5, 0, 1) ** 1.5
+fade = np.clip(t / 0.3, 0, 1) * np.clip((DUR - t) / 2.5, 0, 1) ** 1.5
 st *= fade[:, None] * 0.95
 wavfile.write("build/score.wav", SR, (st * 32767).astype(np.int16))
 print("wrote build/score.wav")
