@@ -1,4 +1,4 @@
-"""Frame renderer for 普罗米修斯 — schematic line-art mini-doc, 1920x1080 @ 30 fps."""
+"""Frame renderer for 薪火 — schematic line-art mini-doc, 1920x1080 @ 30 fps."""
 import math
 import subprocess
 import sys
@@ -820,9 +820,9 @@ def render(fi):
         draw_diagram(ctx, DIAGRAMS[0], ts, 0, 0, 1.0, pens=pens)
         a = ease((ts - 5.0) / 1.5)
         title_backing(ctx, a)
-        ctx.text("普罗米修斯", (960, 470), 150, "ink", a, "mm", True, spacing=24)
-        ctx.text("PROMETHEUS", (960, 600), 26, "red", ease((ts - 6.0) / 1.2), "mm", False, spacing=18)
-        ctx.text("中华文明的火种", (960, 660), 40, "ink", ease((ts - 6.8) / 1.2), "mm", False, spacing=14)
+        ctx.text("薪火", (960, 445), 190, "ink", a, "mm", True, spacing=70)
+        ctx.text("燧人取火 · 文明肇始", (960, 612), 26, "red", ease((ts - 6.0) / 1.2), "mm", False, spacing=12)
+        ctx.text("中华文明的火种", (960, 672), 40, "ink", ease((ts - 6.8) / 1.2), "mm", False, spacing=14)
         la = ease((ts - 6.4) / 1.0)
         ctx.line([(960 - 300 * la, 560), (960 + 300 * la, 560)], 1.4, "red", la)
         comet = comet_layer(ts, comet_path_title, 1.5, 7.5)
@@ -983,7 +983,7 @@ def render_finale(ctx, fx, ts, t, pens):
     if ts >= 12.0:
         a = ease((ts - 12.4) / 1.2)
         title_backing(ctx, a)
-        ctx.text("普罗米修斯", (960, 470), 150, "ink", a, "mm", True, spacing=24)
+        ctx.text("薪火", (960, 445), 190, "ink", a, "mm", True, spacing=70)
         ctx.text("薪火相传 · 生生不息", (960, 630), 40, "red", ease((ts - 13.2) / 1.0), "mm", False, spacing=12)
         la = ease((ts - 13.0) / 1.0)
         ctx.line([(960 - 300 * la, 560), (960 + 300 * la, 560)], 1.4, "red", la)

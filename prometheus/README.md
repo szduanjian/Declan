@@ -1,10 +1,10 @@
-# 普罗米修斯 · 中华文明动画短片
+# 薪火 · 中华文明动画短片
 
 A 2:16 animated mini-doc, generated entirely from code. All on-screen text is in Simplified Chinese.
 
 | Time | Chapter |
 |---|---|
-| 0–15 s | 标题「普罗米修斯」，火焰彗星划过星图 |
+| 0–15 s | 标题「薪火」，火焰彗星划过星图 |
 | 15–30 s | 第一章 · 孔子：我们确立大道 |
 | 30–45 s | 第二章 · 秦始皇：我们一统天下 |
 | 45–60 s | 第三章 · 蔡伦：我们发明纸张 |
@@ -22,7 +22,7 @@ A 2:16 animated mini-doc, generated entirely from code. All on-screen text is in
 ```bash
 pip install pillow numpy scipy
 sudo apt-get install -y ffmpeg fonts-noto-cjk
-./build.sh    # -> build/prometheus_zh.mp4
+./build.sh    # -> build/xinhuo_zh.mp4
 ```
 
 For a quick preview, `python3 snap.py 26 70 130` writes stills to `build/`.
